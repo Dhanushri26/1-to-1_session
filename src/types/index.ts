@@ -9,9 +9,7 @@ export interface Therapist {
   image: string;
   availability: SessionSlot[];
   nextAvailable: string;
-  sessionPrice: number;
   languages: string[];
-  education: string;
 }
 
 export interface SessionSlot {

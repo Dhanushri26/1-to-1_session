@@ -36,8 +36,6 @@ function App() {
           return b.yearsOfExperience - a.yearsOfExperience;
         case 'clients':
           return b.clientsHelped - a.clientsHelped;
-        case 'price':
-          return a.sessionPrice - b.sessionPrice;
         case 'availability':
           const aHasImmediate = a.availability.some(slot => slot.type === 'immediate' && slot.available);
           const bHasImmediate = b.availability.some(slot => slot.type === 'immediate' && slot.available);
@@ -71,7 +69,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-100">
       <Header currentView={currentView} onViewChange={setCurrentView} />
       
       {currentView === 'therapists' ? (
@@ -88,21 +86,28 @@ function App() {
           <main className="max-w-7xl mx-auto px-4 py-8">
             {filteredAndSortedTherapists.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-xl text-purple-600 mb-2">No therapists found</p>
-                <p className="text-gray-600">Try adjusting your search criteria or filters</p>
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20 max-w-md mx-auto">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-white text-2xl">🔍</span>
+                  </div>
+                  <p className="text-xl font-bold text-gray-800 mb-2">No therapists found</p>
+                  <p className="text-gray-600">Try adjusting your search criteria or filters</p>
+                </div>
               </div>
             ) : (
               <>
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                    Available Therapists ({filteredAndSortedTherapists.length})
-                  </h2>
-                  <p className="text-gray-600">
-                    Connect with licensed professionals ready to support your mental health journey
-                  </p>
+                <div className="mb-8">
+                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-slate-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent mb-3">
+                      Available Therapists ({filteredAndSortedTherapists.length})
+                    </h2>
+                    <p className="text-gray-700 text-lg font-medium">
+                      Connect with licensed professionals ready to support your mental health journey
+                    </p>
+                  </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredAndSortedTherapists.map((therapist) => (
                     <TherapistCard
                       key={therapist.id}

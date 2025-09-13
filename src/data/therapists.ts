@@ -17,8 +17,7 @@ export const therapists: Therapist[] = [
     ],
     nextAvailable: "Today at 10:00 AM",
     sessionPrice: 120,
-    languages: ["English", "Spanish"],
-    education: "PhD in Clinical Psychology - Harvard University"
+    languages: ["English", "Tamil"],
   },
   {
     id: 2,
@@ -36,8 +35,7 @@ export const therapists: Therapist[] = [
     ],
     nextAvailable: "Today at 1:00 PM",
     sessionPrice: 100,
-    languages: ["English", "Mandarin"],
-    education: "MA in Marriage & Family Therapy - UCLA"
+    languages: ["English", "Tamil","Hindi"],
   },
   {
     id: 3,
@@ -55,8 +53,7 @@ export const therapists: Therapist[] = [
     ],
     nextAvailable: "Tomorrow at 10:00 AM",
     sessionPrice: 130,
-    languages: ["English", "Spanish", "Portuguese"],
-    education: "PhD in Behavioral Psychology - Stanford University"
+    languages: ["English", "Kannada", "Hindi"],
   },
   {
     id: 4,
@@ -75,8 +72,7 @@ export const therapists: Therapist[] = [
     nextAvailable: "Today at 11:00 AM",
     sessionPrice: 110,
     languages: ["English"],
-    education: "MA in Addiction Counseling - NYU"
-  },
+    },
   {
     id: 5,
     name: "Dr. Lisa Thompson",
@@ -93,8 +89,7 @@ export const therapists: Therapist[] = [
     ],
     nextAvailable: "Tomorrow at 9:00 AM",
     sessionPrice: 140,
-    languages: ["English", "French"],
-    education: "PhD in Trauma Psychology - Johns Hopkins University"
+    languages: ["English", "Hindi","Urdu"],
   },
   {
     id: 6,
@@ -112,7 +107,6 @@ export const therapists: Therapist[] = [
     ],
     nextAvailable: "Friday at 10:00 AM",
     sessionPrice: 95,
-    languages: ["English", "Korean"],
-    education: "MA in Adolescent Psychology - University of Chicago"
+    languages: ["English", "Tamil","Malayalam"],
   }
 ];
