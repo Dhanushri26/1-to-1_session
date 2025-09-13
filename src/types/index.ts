@@ -28,7 +28,7 @@ export interface BookingSession {
   therapistName: string;
   date: string;
   time: string;
-  status: 'confirmed' | 'pending' | 'completed';
+  status: 'ongoing' | 'pending' | 'completed';
   type: 'initial' | 'follow-up';
-  sessionPrice: number;
+  // sessionPrice: number;
 }

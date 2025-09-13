@@ -10,7 +10,7 @@ interface UserSessionsProps {
 export default function UserSessions({ sessions, onReschedule, onCancel }: UserSessionsProps) {
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'confirmed':
+      case 'ongoing':
         return <CheckCircle className="h-5 w-5 text-green-500" />;
       case 'pending':
         return <AlertCircle className="h-5 w-5 text-yellow-500" />;
@@ -23,7 +23,7 @@ export default function UserSessions({ sessions, onReschedule, onCancel }: UserS
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'confirmed':
+      case 'ongoing':
         return 'bg-green-100 text-green-800';
       case 'pending':
         return 'bg-yellow-100 text-yellow-800';
@@ -34,7 +34,7 @@ export default function UserSessions({ sessions, onReschedule, onCancel }: UserS
     }
   };
 
-  const upcomingSessions = sessions.filter(session => session.status === 'confirmed' || session.status === 'pending');
+  const upcomingSessions = sessions.filter(session => session.status === 'ongoing' || session.status === 'pending');
   const pastSessions = sessions.filter(session => session.status === 'completed');
 
   return (
@@ -53,7 +53,6 @@ export default function UserSessions({ sessions, onReschedule, onCancel }: UserS
                       {session.status.charAt(0).toUpperCase() + session.status.slice(1)}
                     </span>
                   </div>
-                  <span className="text-sm text-purple-600 font-medium">${session.sessionPrice}</span>
                 </div>
                 
                 <h3 className="text-lg font-bold text-purple-600 mb-2">{session.therapistName}</h3>
@@ -140,7 +139,6 @@ export default function UserSessions({ sessions, onReschedule, onCancel }: UserS
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-purple-600 font-medium">${session.sessionPrice}</p>
                     <button className="text-purple-600 text-sm hover:text-purple-700 mt-1">
                       Book Again
                     </button>

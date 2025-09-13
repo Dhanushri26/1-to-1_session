@@ -1,5 +1,6 @@
-import { X, Calendar, Clock, User, Phone, ArrowLeft } from 'lucide-react';
+import { Calendar, Clock, User, Phone, ArrowLeft, Video, MapPin } from 'lucide-react';
 import { Therapist, SessionSlot } from '../types';
+import { useState } from 'react';
 
 interface BookingPageProps {
   isOpen: boolean;
@@ -8,13 +9,16 @@ interface BookingPageProps {
 }
 
 export default function BookingPage({ isOpen, onClose, therapist }: BookingPageProps) {
+  const [sessionType, setSessionType] = useState<'online' | 'offline'>('online');
+  
   if (!isOpen || !therapist) return null;
 
   const immediateSlots = therapist.availability.filter(slot => slot.type === 'immediate' && slot.available);
   const scheduledSlots = therapist.availability.filter(slot => slot.type === 'scheduled' && slot.available);
   
   const handleBooking = (slot: SessionSlot) => {
-    alert(`Session booked successfully for ${slot.date} at ${slot.time}!`);
+    const sessionTypeText = sessionType === 'online' ? 'Online' : 'In-person';
+    alert(`${sessionTypeText} session booked successfully for ${slot.date} at ${slot.time}!`);
     onClose();
   };
 
@@ -50,10 +54,47 @@ export default function BookingPage({ isOpen, onClose, therapist }: BookingPageP
               </div>
             </div>
           </div>
-          <div className="text-right">
+          {/* <div className="text-right">
             <p className="text-lg font-bold">${therapist.sessionPrice}</p>
             <p className="text-purple-100 text-sm">per session</p>
+          </div> */}
+        </div>
+      </div>
+
+      {/* Session Type Selector */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto p-4">
+          <h3 className="text-lg font-semibold text-gray-800 mb-3">Choose Session Type</h3>
+          <div className="flex space-x-4">
+            <button
+              onClick={() => setSessionType('online')}
+              className={`flex items-center space-x-2 px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
+                sessionType === 'online'
+                  ? 'border-blue-500 bg-blue-50 text-blue-700'
+                  : 'border-gray-300 bg-white text-gray-600 hover:border-gray-400'
+              }`}
+            >
+              <Video className="h-5 w-5" />
+              <span className="font-medium">Online Session</span>
+            </button>
+            <button
+              onClick={() => setSessionType('offline')}
+              className={`flex items-center space-x-2 px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
+                sessionType === 'offline'
+                  ? 'border-green-500 bg-green-50 text-green-700'
+                  : 'border-gray-300 bg-white text-gray-600 hover:border-gray-400'
+              }`}
+            >
+              <MapPin className="h-5 w-5" />
+              <span className="font-medium">In-Person Session</span>
+            </button>
           </div>
+          <p className="text-sm text-gray-600 mt-2">
+            {sessionType === 'online' 
+              ? 'Join via video call from anywhere' 
+              : 'Meet at the therapist\'s office location'
+            }
+          </p>
         </div>
       </div>
 
@@ -87,6 +128,16 @@ export default function BookingPage({ isOpen, onClose, therapist }: BookingPageP
                         <div className="flex items-center space-x-2 text-gray-600">
                           <Clock className="h-4 w-4" />
                           <span>{slot.time}</span>
+                        </div>
+                        <div className="flex items-center space-x-1 mt-1">
+                          {sessionType === 'online' ? (
+                            <Video className="h-3 w-3 text-blue-500" />
+                          ) : (
+                            <MapPin className="h-3 w-3 text-green-500" />
+                          )}
+                          <span className="text-xs text-gray-500">
+                            {sessionType === 'online' ? 'Online' : 'In-person'}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -134,6 +185,16 @@ export default function BookingPage({ isOpen, onClose, therapist }: BookingPageP
                       <div className="flex items-center space-x-2 text-gray-600">
                         <Clock className="h-4 w-4" />
                         <span>{slot.time}</span>
+                      </div>
+                      <div className="flex items-center space-x-1 mt-1">
+                        {sessionType === 'online' ? (
+                          <Video className="h-3 w-3 text-blue-500" />
+                        ) : (
+                          <MapPin className="h-3 w-3 text-green-500" />
+                        )}
+                        <span className="text-xs text-gray-500">
+                          {sessionType === 'online' ? 'Online' : 'In-person'}
+                        </span>
                       </div>
                     </div>
                   </div>

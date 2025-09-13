@@ -7,10 +7,9 @@ export const userSessions: BookingSession[] = [
     therapistName: "Dr. Sarah Mitchell",
     date: "2025-01-12",
     time: "2:00 PM",
-    status: "confirmed",
-    type: "initial",
-    sessionPrice: 120
-  },
+    status: "ongoing",
+    type: "initial"
+    },
   {
     id: "session-2",
     therapistId: 3,
@@ -19,7 +18,6 @@ export const userSessions: BookingSession[] = [
     time: "10:00 AM",
     status: "completed",
     type: "follow-up",
-    sessionPrice: 130
   },
   {
     id: "session-3",
@@ -27,8 +25,7 @@ export const userSessions: BookingSession[] = [
     therapistName: "Dr. Michael Chen",
     date: "2025-01-18",
     time: "1:00 PM",
-    status: "confirmed",
+    status: "ongoing",
     type: "follow-up",
-    sessionPrice: 100
   }
 ];
